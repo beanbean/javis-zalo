@@ -2,6 +2,19 @@
 
 All notable changes to javis-zalo. Newest first.
 
+## [1.13.0] - 2026-11-19
+
+### Added
+- **`zalo_send_link`: a link goes out as a link card.** The message shows the page's title, description and
+  thumbnail under the text, as when a person types a link in the Zalo app. Javis owner report, 19/11/2026: a link
+  Javis sent showed as bare text. The card is built by the sender (Zalo reads the page with `parseLink`, then a
+  link message carries the result), so a plain `zalo_send_message` with a URL in it can never show one.
+  - Parameters: `threadId`, `url` (http or https), optional `text` (the link is appended when the text lacks it)
+    and `threadType`.
+  - When Zalo cannot read a preview for the page, the same text goes out as a plain message and the result says
+    `preview: false`. A failed send of the card itself is reported, never retried as plain text, so the contact
+    cannot get the message twice.
+
 ## [1.12.0] - 2026-11-18
 
 ### Fixed
